@@ -26,17 +26,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from "nuxt-property-decorator"
+import { Component, Vue } from "nuxt-property-decorator"
 import { PORTFOLIO } from "~/constants/default/portfolio"
 
 @Component
 export default class portfolio extends Vue {
-  // computed: {
-  //   portfolios: () => {
-  //     return PORTFOLIO
-  //   },
-  // },
-
   //
   // computed
   //

@@ -32,7 +32,7 @@ export default class TheSideMenu extends Vue {
   //
   // Computed
   //
-  sideMenu() {
+  get sideMenu() {
     return SIDE_MENU
   }
 }

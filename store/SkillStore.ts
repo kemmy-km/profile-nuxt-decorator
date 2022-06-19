@@ -30,17 +30,14 @@ export default class SkillStore extends VuexModule {
   }
 
   public get getTest() {
-    // return state.test
     return this.rawTest
 }
 
   public get getHoge() {
-    // return state.hoge
     return this.rawHoge
   }
 
   public get getItems() {
-    // return state.items.filter(item => item.price >= 1000)
     return this.items.filter(item => item.price >= 1000)
   }
 
@@ -54,7 +51,6 @@ export default class SkillStore extends VuexModule {
 
 }
 
-//
 // const state = {
 //   rawForm: "",
 //   test: "test1",

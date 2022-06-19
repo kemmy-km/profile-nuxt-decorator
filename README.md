@@ -1,4 +1,5 @@
-# nuxt-profile03
+# profile-nuxt-decorator
+Nuxt.js * Vuetify * デコレータを使用したプロフィールサイトです。
 
 ## Build Setup
 

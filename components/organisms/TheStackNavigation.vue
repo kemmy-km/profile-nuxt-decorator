@@ -6,8 +6,7 @@
     </transition>
     <!-- コンテンツ -->
     <transition name="right">
-      <!-- <v-card v-if="isLoaded" :class="style.content" :width="widthPercentage"> -->
-      <v-card>
+      <v-card v-if="isLoaded" :class="style.content" :width="widthPercentage">
         <component :is="component" />
       </v-card>
     </transition>
@@ -71,16 +70,16 @@ export default class TheStackNavigation extends Vue {
     return appStore.getStackComponents
   }
 
-  // get isTopPage() {
-  //   return (this.index || 0) + 1 === appStore.getStackPage
-  // }
+  get isTopPage() {
+    return (this.index || 0) + 1 === appStore.getStackPage
+  }
 
-  // get style() {
-  //   return {
-  //     overlay: this.isTopPage ? "c-stack-navigation__overlay" : "c-stack-navigation__overlay__back",
-  //     content: this.isTopPage ? "c-stack-navigation__content" : "c-stack-navigation__content__back",
-  //   }
-  // }
+  get style() {
+    return {
+      overlay: this.isTopPage ? "c-stack-navigation__overlay" : "c-stack-navigation__overlay__back",
+      content: this.isTopPage ? "c-stack-navigation__content" : "c-stack-navigation__content__back",
+    }
+  }
 
   // get widthPercentage() {
   //   if (true) {
@@ -96,9 +95,9 @@ export default class TheStackNavigation extends Vue {
     this.isLoaded = true
   }
 
-  // removeStack() {
-  //   appStore.removeStack()
-  // }
+  removeStack() {
+    appStore.removeStack()
+  }
 }
 </script>
 

@@ -18,7 +18,7 @@ export default class AppStore extends VuexModule {
   // getters
   //
   public get getStackComponents(): any[] {
-    return this.getStackComponents
+    return this.stackComponents
   }
 
   // public get getStackPage(): number {
@@ -39,14 +39,14 @@ export default class AppStore extends VuexModule {
     this.stackComponents.push(component)
   }
 
-  // @Mutation
-  // removeStack() {
-
-  // }
-
   @Mutation
   pushToaster() {
 
+  }
+
+  @Mutation
+  removeStack() {
+    return this.stackComponents.pop()
   }
 
 }

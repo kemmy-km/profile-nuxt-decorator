@@ -2,7 +2,7 @@
   <v-app dark>
     <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed app>
       <div class="d-flex list-header">
-        <h2>title</h2>
+        <h2>ページ</h2>
         <v-btn @click.stop="drawer = !drawer">
           <v-icon>mdi-close</v-icon>
         </v-btn>
@@ -31,12 +31,12 @@
       </v-btn> -->
     </v-app-bar>
 
-    <!-- <TheStackNavigation
+    <TheStackNavigation
       v-for="(stackComponent, index) in stackComponents"
       :key="index"
       :component="stackComponent.component"
       :index="index"
-    /> -->
+    />
 
     <!-- <TheDialog v-if="isShowDialog" /> -->
     <!-- <TheOverlay v-if="isShowOverlay" /> -->
@@ -47,8 +47,7 @@
           <div class="l-default__side">
             <TheSideMenu />
             <!-- <p>getters: {{ $store.getters["SkillStore/getTest"] }}</p> -->
-            <!-- <p>getters: {{ $store.getters["SkillStore/getHoge"] }}</p> -->
-            <p>computed:getTest()の戻り値: {{ getTest }}</p>
+            <p>computed: {{ getTest }}</p>
             <p>computed: {{ getHoge }}</p>
 
             <!-- <p>
@@ -84,9 +83,7 @@
 <script>
 import { Component, Vue } from "nuxt-property-decorator"
 // import TheSideMenu from "~/components/organisms/TheSideMenu.vue"
-// import appStore from "~/store"
-// import { getTest, getHoge } from "~/store/SkillStore"
-// import { skillStore } from "~/store/SkillStore"
+import { appStore } from "~/store"
 import { skillStore } from "~/store"
 import { SIDE_MENU } from "~/constants/config"
 
@@ -130,13 +127,13 @@ export default class default1 extends Vue {
   right = true
   rightDrawer = false
   title = "KM Profile"
-  // isSideOpen= true
+  isSideOpen = true
   open = false
 
   //
   // Computed
   //
-  sideMenu() {
+  get sideMenu() {
     return SIDE_MENU
   }
 
@@ -148,6 +145,24 @@ export default class default1 extends Vue {
   get getHoge() {
     return skillStore.getHoge
   }
+
+  get stackComponents() {
+    // return !!appStore.getStackComponents ? appStore.getStackComponents : []
+    return appStore.getStackComponents
+  }
+
+  //
+  // LifeCycle
+  //
+  mounted() {}
+
+  //
+  // Method
+  //
+  toggleSideMenu(isSideOpen) {
+    this.isSideOpen = isSideOpen
+  }
+
   // computed: {
   //   getTest() {
   //     return this.$store.getters["SkillStore/getTest"]
@@ -166,8 +181,6 @@ export default class default1 extends Vue {
   //   return !!AppStore.getDialog.length
   // },
   // },
-
-  mounted() {}
 
   // methods: {
   //   toggleSideMenu: (isSideOpen) => {
