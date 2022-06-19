@@ -61,7 +61,7 @@ export default class VTextField extends Vue {
 
   get classes() {
     switch (this.option) {
-      case "test":
+      case "1":
         return "g-input-text c-contract-form__textarea"
       default:
         return "g-text-area"

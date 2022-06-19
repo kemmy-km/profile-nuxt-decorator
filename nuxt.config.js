@@ -44,7 +44,8 @@ export default {
   ],
 
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    // customVariables: ['~/assets/variables.scss'],
+    customVariables: ['~/assets/scss'],
     theme: {
       dark: true,
       themes: {

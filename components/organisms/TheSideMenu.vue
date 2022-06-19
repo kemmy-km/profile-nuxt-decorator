@@ -39,5 +39,5 @@ export default class TheSideMenu extends Vue {
 </script>
 
 <style lang="scss">
-@import "/assets/index.scss";
+// @import "/assets/index.scss";
 </style>

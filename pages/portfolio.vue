@@ -18,7 +18,8 @@
           <p>
             {{ portfolio.useSkill }}
           </p>
-          <v-btn class="" outlined tile depressed @click="$emit('', $event)"> 詳細を見る </v-btn>
+          <!-- <v-btn class="" outlined tile depressed @click="$emit('', $event)"> 詳細を見る </v-btn> -->
+          <v-btn class="" outlined tile depressed @click="portfolio;"> 詳細を見る </v-btn>
         </div>
       </div>
     </div>
@@ -28,6 +29,7 @@
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
 import { PORTFOLIO } from "~/constants/default/portfolio"
+import { appStore, portfolioStore } from "~/store"
 
 @Component
 export default class portfolio extends Vue {
@@ -36,6 +38,20 @@ export default class portfolio extends Vue {
   //
   get portfolios() {
     return PORTFOLIO
+  }
+
+  //
+  // Method
+  //
+
+  pushStack(component: string) {
+    appStore.pushStack({ component })
+  }
+
+  /** 詳細を見るクリック時にポートフォリオを表示 */
+  pushStackPortfolio(portfolio: any) {
+    portfolioStore.setPortfolio(portfolio)
+    this.pushStack("PortfolioForm")
   }
 }
 </script>

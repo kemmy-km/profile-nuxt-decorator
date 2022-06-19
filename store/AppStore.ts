@@ -1,7 +1,7 @@
-import { Component } from "nuxt-property-decorator"
+// import { Component } from "nuxt-property-decorator"
+import { v4 as uuidv4 } from "uuid"
 import { Module, Mutation, VuexModule } from "vuex-module-decorators"
-import { StackComponent, Toaster } from "~/types/api/store"
-// import { v4 as uuidv4 } from "uuid"
+import { StackComponent, Toaster, Dialog } from "~/types/store"
 
 @Module({
   name: "AppStore",
@@ -14,6 +14,7 @@ export default class AppStore extends VuexModule {
   // state
   //
   private stackComponents: StackComponent[] = []
+  private dialog: Dialog[] = []
   public toasters: Toaster[] = []
 
   //
@@ -27,6 +28,10 @@ export default class AppStore extends VuexModule {
   //   return this.stackComponents.length || 0
   // }
 
+  public get getToasters() {
+    return this.toasters
+  }
+
   /**  */
   // public get isShowToaster(): boolean {
   //   return this.toasters.length !== 0
@@ -35,6 +40,11 @@ export default class AppStore extends VuexModule {
   //
   // Mutation
   //
+  @Mutation
+  pushDialog(data: Dialog) {
+    this.dialog = [data]
+  }
+
   /** ページを開く場合 */
   @Mutation
   pushStack(component: StackComponent) {
@@ -42,14 +52,29 @@ export default class AppStore extends VuexModule {
   }
 
   @Mutation
+  removeDialog() {
+    this.dialog.pop()
+  }
+
+  @Mutation
   pushToaster(toast: Toaster) {
-    // this.toasters = [...this.toasters, Object.assign(toast, { id: uuidv4() })]
-    this.toasters = [...this.toasters, Object.assign(toast, {id: Component })]
+    this.toasters = [...this.toasters, Object.assign(toast, {id: uuidv4() })]
   }
 
   @Mutation
   removeStack() {
+    // 配列の最後を除去
     return this.stackComponents.pop()
+  }
+
+  /** トースターを閉じる */
+  @Mutation
+  removeToaster(id: string) {
+    this.toasters.forEach((v: Toaster, index: number) => {
+      if (v.id === id) {
+        this.toasters.splice(index, 1)
+      }
+    })
   }
 
 }

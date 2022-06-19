@@ -97,5 +97,4 @@ export default class Skill extends Vue {
 </script>
 
 <style lang="scss">
-@import "assets/foundation/_base.scss";
 </style>

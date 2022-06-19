@@ -2,11 +2,12 @@
   <div>
     <!-- オーバーレイ -->
     <transition name="fade">
-      <!-- <div v-if="isLoaded" :class="style.overLay" @click="removeStack" /> -->
+      <div v-if="isLoaded" :class="style.overLay" @click="removeStack" />
     </transition>
     <!-- コンテンツ -->
     <transition name="right">
-      <v-card v-if="isLoaded" :class="style.content" :width="widthPercentage">
+      <!-- <v-card v-if="isLoaded" :class="style.content" :width="widthPercentage"> -->
+      <v-card v-if="isLoaded" :class="style.content">
         <component :is="component" />
       </v-card>
     </transition>
@@ -15,7 +16,6 @@
 
 <script>
 import { Component, Vue, Prop } from "nuxt-property-decorator"
-// import { appStore } from "~/store/AppStore"
 import { appStore } from "~/store"
 
 @Component
@@ -101,22 +101,23 @@ export default class TheStackNavigation extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .c-stack-navigation {
   &__content {
-    // @include stack z-index: 200;
+    @include stack;
+    z-index: 200;
     &__back {
-      // @include stack;
+      @include stack;
     }
     //
     background: blue !important;
   }
 
   &__overlay {
-    // @include overlay;
+    @include overlay;
     z-index: 199;
     &__back {
-      // @include overlay;
+      @include overlay;
     }
   }
 }

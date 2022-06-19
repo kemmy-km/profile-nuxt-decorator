@@ -59,10 +59,14 @@
               <v-btn>戻る</v-btn>
             </v-col>
 
-            <v-col cols="8" sm="8" class="text-center" @click="clickStepConfirm()">
+            <v-col cols="8" sm="8" class="text-center" @click="clickStepPostContactForm()">
               <v-btn>送信</v-btn>
             </v-col>
           </v-row>
+        </v-card>
+
+        <v-card v-if="formStep === 3" outlined>
+          <v-card-title>送信されました</v-card-title>
         </v-card>
       </v-form>
     </v-container>
@@ -133,7 +137,8 @@ export default class Contract extends Vue {
 
   /** フォームを送信 */
   clickStepPostContactForm() {
-    contactStore.postContractForm()
+    contactStore.postContactForm()
+    this.formStep++
   }
 
   // storeFormValue(event) {

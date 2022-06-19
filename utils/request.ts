@@ -62,14 +62,14 @@ export const request = {
       commonErrorHandling(error, "エラー", "データの更新に失敗しました")
     })
   },
-  // put: (url: string, data?: any): Promise<void | AxiosResponse<any>> => {
-  //   return $axios.put(url, data).catch((error) => {
-  //     commonErrorHandling(error, "エラー", "データの更新に失敗しました")
-  //   })
-  // },
-  // delete: (url: string, data?: any): Promise<void | AxiosResponse<any>> => {
-  //   return $axios.delete(url, data).catch((error) => {
-  //     commonErrorHandling(error, "エラー", "データの削除に失敗しました")
-  //   })
-  // },
+  put: (url: string, data?: any): Promise<void | AxiosResponse<any>> => {
+    return $axios.put(url, data).catch((error) => {
+      commonErrorHandling(error, "エラー", "データの更新に失敗しました")
+    })
+  },
+  delete: (url: string, data?: any): Promise<void | AxiosResponse<any>> => {
+    return $axios.delete(url, data).catch((error) => {
+      commonErrorHandling(error, "エラー", "データの削除に失敗しました")
+    })
+  },
 }

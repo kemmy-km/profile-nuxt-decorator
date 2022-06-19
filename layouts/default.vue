@@ -37,12 +37,13 @@
       :component="stackComponent.component"
       :index="index"
     />
+    <Toaster />
 
     <!-- <TheDialog v-if="isShowDialog" /> -->
     <!-- <TheOverlay v-if="isShowOverlay" /> -->
 
-    <v-main>
-      <v-container class="d-flex">
+    <v-main class="l-main">
+      <v-container class="d-flex" fluid>
         <div class="l-default">
           <div class="l-default__side">
             <TheSideMenu />
@@ -74,9 +75,11 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-footer :absolute="!fixed" app>
+
+    <!-- <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
+    </v-footer> -->
+    <TheFooter />
   </v-app>
 </template>
 
@@ -147,8 +150,8 @@ export default class default1 extends Vue {
   }
 
   get stackComponents() {
-    // return !!appStore.getStackComponents ? appStore.getStackComponents : []
-    return appStore.getStackComponents
+    return appStore.getStackComponents ? appStore.getStackComponents : []
+    // return appStore.getStackComponents
   }
 
   //
