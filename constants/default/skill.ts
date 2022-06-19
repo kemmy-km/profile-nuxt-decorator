@@ -3,7 +3,7 @@ export const SKILL = [
   {
     title: "AWS",
     other: "ECS, S3, CodeBuild(CI, CD)",
-    imgSrc: "icon__aws.jpeg",
+    imgSrc: "_nuxt/assets/image/icon__aws.jpeg",
   },
   {
     title: "Frontend",

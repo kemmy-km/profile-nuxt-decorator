@@ -6,7 +6,9 @@
       <v-card v-for="(item, i) in items" :key="i">
         <v-card-text> {{ item.title }} </v-card-text>
         <v-row>
-          <v-col> </v-col>
+          <v-col>
+            <img :src="item.imgSrc" alt="" />
+          </v-col>
         </v-row>
 
         <v-btn class="btn">詳細を見る</v-btn>
@@ -19,6 +21,7 @@
         <div class="card-text">AWS</div>
         <v-spacer />
         <v-btn class="" outlined tile depressed @click="$emit('', $event)"> 詳細を見る </v-btn>
+        <!-- <v-btn outlined tile depressed @click="pushStackSkillDetail(item)" class="btn"> 詳細を見る </v-btn> -->
       </div>
     </div>
 
@@ -37,7 +40,12 @@
           <p>
             {{ item.other }}
           </p>
-          <v-btn class="" outlined tile depressed @click="$emit('', $event)"> 詳細を見る </v-btn>
+          <!-- <v-btn class="" outlined tile depressed @click="$emit('', $event)"> 詳細を見る </v-btn> -->
+          <!-- スタック用ボタン -->
+          <div class="p-header__button-areas">
+            <!-- <SystemButton :label="詳細" :items="menuList" @click="pushStackAWS()" /> -->
+            <SystemButton :label="詳細" @click="pushStackAws()" />
+          </div>
         </div>
       </div>
     </div>
@@ -66,8 +74,8 @@ export default class Skill extends Vue {
     appStore.pushStack({ component })
   }
 
-  pushStackAWS() {
-    // skillStore.getForm(false)
+  /** 詳細ボタンのクリック時に、詳細フォームを開く */
+  pushStackAws() {
     this.pushStack("AwsForm")
   }
 

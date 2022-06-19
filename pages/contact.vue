@@ -6,11 +6,9 @@
           <!-- <h2 class="heading__lv2">フォーム</h2> -->
           <v-card-title>フォーム</v-card-title>
           <v-row class="d-flex">
-            <v-col cols="4" sm="4">
-              <v-card-text>氏名</v-card-text>
-            </v-col>
-            <v-col cols="8" sm="8">
-              <v-text-field> </v-text-field>
+            <v-col cols="12" sm="12" class="d-flex">
+              <v-card-text v-model="name">氏名</v-card-text>
+              <VCommonTextFiled v-model="name" label="氏名" cols="12" />
             </v-col>
           </v-row>
 
@@ -32,20 +30,14 @@
               <v-card-text>内容</v-card-text>
             </v-col>
             <v-col cols="8" sm="8">
-              <v-textarea> </v-textarea>
+              <!-- <v-textarea> </v-textarea> -->
+              <VTextAreaField v-model="content" label="内容" />
             </v-col>
           </v-row>
 
           <v-row class="d-flex justify-center">
-            <v-col
-              cols="8"
-              sm="8"
-              class="text-center"
-              @click="
-                clickStepConfirm()
-                storeFormValue()
-              "
-            >
+            <v-col cols="8" sm="8" class="text-center" @click="clickStepConfirm()">
+              <!-- storeFormValue() -->
               <v-btn>確認</v-btn>
             </v-col>
           </v-row>
@@ -53,18 +45,21 @@
 
         <v-card v-if="formStep === 2" outlined>
           <v-card-title>フォーム</v-card-title>
-          <p>aaa</p>
 
-          <p>
+          <p>氏名：{{ name }}</p>
+          <p>要件：{{ use }}</p>
+          <p>内容：{{ content }}</p>
+
+          <!-- <p>
             {{ getStoreFormValue }}
-          </p>
+          </p> -->
 
           <v-row class="d-flex justify-center">
-            <v-col cols="8" sm="8" @click="clickStepConfirmBack()" class="text-center">
+            <v-col cols="8" sm="8" class="text-center" @click="clickStepConfirmBack()">
               <v-btn>戻る</v-btn>
             </v-col>
 
-            <v-col cols="8" sm="8" @click="clickStepConfirm()" class="text-center">
+            <v-col cols="8" sm="8" class="text-center" @click="clickStepConfirm()">
               <v-btn>送信</v-btn>
             </v-col>
           </v-row>
@@ -72,7 +67,7 @@
       </v-form>
     </v-container>
 
-    <v-row justify="center" align="center">
+    <!-- <v-row justify="center">
       <v-col cols="12" sm="8" md="6">
         <v-card class="logo py-4 d-flex justify-center">
           <NuxtLogo />
@@ -87,13 +82,9 @@
             </div>
             <hr class="my-3" />
           </v-card-text>
-          <v-card-actions>
-            <v-spacer />
-            <v-btn color="primary" nuxt to="/about"> Continue </v-btn>
-          </v-card-actions>
         </v-card>
       </v-col>
-    </v-row>
+    </v-row> -->
   </div>
 </template>
 
@@ -109,6 +100,13 @@ export default class Contract extends Vue {
   //
   formStep = 1
 
+  /** 氏名 */
+  name = ""
+  /** 要件 */
+  use = ""
+  /** 内容 */
+  content = ""
+
   //
   // Computed
   //
@@ -123,12 +121,19 @@ export default class Contract extends Vue {
   //
   // Methods
   //
+  /** 確認ページを表示 */
   clickStepConfirm() {
     this.formStep++
   }
 
+  /** 初期ページを表示 */
   clickStepConfirmBack() {
     this.formStep--
+  }
+
+  /** フォームを送信 */
+  clickStepPostContactForm() {
+    contactStore.postContractForm()
   }
 
   // storeFormValue(event) {
@@ -138,16 +143,7 @@ export default class Contract extends Vue {
   // }
 }
 // export default {
-//   data() {
-//     return {
-//       formStep: 1,
-//     }
-//   },
 //   computed: {
-//     items: () => {
-//       return useOptions
-//     },
-
 //     getStoreFormValue() {
 //       return this.$store.getters["ContactFormStore/getStoreFormValue"]
 //     },
@@ -172,7 +168,15 @@ export default class Contract extends Vue {
 
 <style lang="scss" scoped>
 .v-card {
-  min-width: 400px;
+  min-width: 500px;
   width: 500px;
+}
+
+.v-card__text {
+  max-width: 200px;
+}
+
+.v-application .d-flex {
+  align-items: center;
 }
 </style>

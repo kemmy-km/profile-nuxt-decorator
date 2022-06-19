@@ -1,5 +1,7 @@
+import { Component } from "nuxt-property-decorator"
 import { Module, Mutation, VuexModule } from "vuex-module-decorators"
 import { StackComponent, Toaster } from "~/types/api/store"
+// import { v4 as uuidv4 } from "uuid"
 
 @Module({
   name: "AppStore",
@@ -40,8 +42,9 @@ export default class AppStore extends VuexModule {
   }
 
   @Mutation
-  pushToaster() {
-
+  pushToaster(toast: Toaster) {
+    // this.toasters = [...this.toasters, Object.assign(toast, { id: uuidv4() })]
+    this.toasters = [...this.toasters, Object.assign(toast, {id: Component })]
   }
 
   @Mutation
