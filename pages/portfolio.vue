@@ -19,7 +19,7 @@
             {{ portfolio.useSkill }}
           </p>
           <!-- <v-btn class="" outlined tile depressed @click="$emit('', $event)"> 詳細を見る </v-btn> -->
-          <v-btn class="" outlined tile depressed @click="portfolio;"> 詳細を見る </v-btn>
+          <v-btn class="" outlined tile depressed @click="pushStackPortfolio(portfolio)"> 詳細を見る </v-btn>
         </div>
       </div>
     </div>
@@ -41,6 +41,14 @@ export default class portfolio extends Vue {
   }
 
   //
+  // LifeCycle
+  //
+  // async mounted() {
+  //   await portfolioStore.fetchPortfolio({})
+  //   this.pushStackPortfolio(portfolio)
+  // }
+
+  //
   // Method
   //
 
@@ -53,8 +61,18 @@ export default class portfolio extends Vue {
     portfolioStore.setPortfolio(portfolio)
     this.pushStack("PortfolioForm")
   }
+
+  /**  */
+  switchOverlay() {
+    appStore.switchOverlay(true)
+  }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.v-menu {
+  &__content {
+    overflow-y: hidden;
+  }
+}
 </style>

@@ -1,5 +1,16 @@
 # profile-nuxt-decorator
-Nuxt.js * Vuetify * デコレータを使用したプロフィールサイトです。
+Nuxt.js × Vuetify × モジュールデコレータを使用したプロフィールサイトです。
+
+# NEXT TODO
+クリックしたスキルの`skill.code`に応じてフォームに表示させる内容を動的に表示させたい
+
+# want
+- フォーム上のデータを動的に制御
+- 不要な赤線を削除。プラグインの問題
+- S3に画像やJSONファイルを配置し、そこから取得する
+- API実装、Actionsを使用してバックエンドやS3のJSONファイルからデータを取得させる
+- 完全なTS化、厳格な型指定
+- CI/CD, Amplify対応
 
 ## Build Setup
 

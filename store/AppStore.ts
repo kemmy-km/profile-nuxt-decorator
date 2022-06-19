@@ -1,4 +1,3 @@
-// import { Component } from "nuxt-property-decorator"
 import { v4 as uuidv4 } from "uuid"
 import { Module, Mutation, VuexModule } from "vuex-module-decorators"
 import { StackComponent, Toaster, Dialog } from "~/types/store"
@@ -13,29 +12,43 @@ export default class AppStore extends VuexModule {
   //
   // state
   //
+  public applicationLoaded: boolean = false
   private stackComponents: StackComponent[] = []
   private dialog: Dialog[] = []
   public toasters: Toaster[] = []
+  public isShowOverlay = false
 
   //
   // getters
   //
+  public get getDialog() {
+    return this.dialog
+  }
+
   public get getStackComponents(): any[] {
     return this.stackComponents
   }
 
-  // public get getStackPage(): number {
-  //   return this.stackComponents.length || 0
-  // }
+  public get getStackPage(): number {
+    return this.stackComponents.length || 0
+  }
+
+  public get getIsShowOverlay() {
+    return this.isShowOverlay
+  }
 
   public get getToasters() {
     return this.toasters
   }
 
+  public get isApplicationLoaded() {
+    return this.applicationLoaded
+  }
+
   /**  */
-  // public get isShowToaster(): boolean {
-  //   return this.toasters.length !== 0
-  // }
+  public get isShowToaster(): boolean {
+    return this.toasters.length !== 0
+  }
 
   //
   // Mutation
@@ -75,6 +88,14 @@ export default class AppStore extends VuexModule {
         this.toasters.splice(index, 1)
       }
     })
+  }
+
+  /**
+   * overlayの切り替え
+   */
+  @Mutation
+  switchOverlay(isOpen: boolean) {
+    this.isShowOverlay = isOpen
   }
 
 }

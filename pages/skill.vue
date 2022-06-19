@@ -2,57 +2,27 @@
   <div>
     <h2 class="heading__lv2">Skill</h2>
 
-    <v-container class="card-wrapper">
-      <v-card v-for="(item, i) in items" :key="i">
-        <v-card-text> {{ item.title }} </v-card-text>
-        <v-row>
-          <v-col>
-            <img :src="item.imgSrc" alt="" />
-          </v-col>
-        </v-row>
-
-        <v-btn class="btn">詳細を見る</v-btn>
-      </v-card>
-    </v-container>
-
-    <div class="container">
-      <h2 class="heading__lv2">Skill</h2>
-      <div class="card">
-        <div class="card-text">AWS</div>
-        <v-spacer />
-        <v-btn class="" outlined tile depressed @click="$emit('', $event)"> 詳細を見る </v-btn>
-        <!-- <v-btn outlined tile depressed @click="pushStackSkillDetail(item)" class="btn"> 詳細を見る </v-btn> -->
-      </div>
-    </div>
-
-    <hr />
-
     <div class="container">
       <h2 class="heading__lv2">Skill</h2>
 
       <div class="card-wrapper">
-        <div v-for="(item, i) in items" :key="i" class="card">
-          <div class="card-text">{{ item.title }}</div>
+        <div v-for="skill in skills" :key="skill.code" class="card">
+          <div class="card-text">{{ skill.title }}</div>
           <v-spacer />
           <div class="img-wrapper">
             <img src="~/assets/image/icon__aws.jpeg" alt="" />
           </div>
           <p>
-            {{ item.other }}
+            {{ skill.other }}
           </p>
-          <!-- <v-btn class="" outlined tile depressed @click="$emit('', $event)"> 詳細を見る </v-btn> -->
-          <!-- スタック用ボタン -->
-          <div class="p-header__button-areas">
-            <!-- <SystemButton :label="詳細" :items="menuList" @click="pushStackAWS()" /> -->
-            <SystemButton :label="詳細" @click="pushStackAws()" />
-          </div>
+          <v-btn class="" outlined tile depressed @click="pushStackSkill(skill)"> 詳細を見る </v-btn>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { Component, Vue } from "nuxt-property-decorator"
 import { SKILL } from "~/constants/default/skill"
 import { appStore } from "~/store"
@@ -63,20 +33,33 @@ export default class Skill extends Vue {
   //
   // Computed
   //
-  get items() {
+  // get items() {
+  //   return SKILL
+  // }
+  get skills() {
     return SKILL
   }
 
   //
   // Method
   //
-  pushStack(component: any) {
+  pushStack(component) {
     appStore.pushStack({ component })
   }
 
   /** 詳細ボタンのクリック時に、詳細フォームを開く */
   pushStackAws() {
     this.pushStack("AwsForm")
+    // this.pushStack("SkillForm")
+  }
+
+  pushStackSkill() {
+    this.pushStack("SkillForm")
+  }
+
+  /**  */
+  switchOverlay() {
+    appStore.switchOverlay(true)
   }
 
   // computed: {

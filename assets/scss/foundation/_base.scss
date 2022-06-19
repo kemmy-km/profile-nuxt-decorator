@@ -80,6 +80,40 @@ img {
   width: 49%;
 }
 
+::v-deep .v-overlay__scrim {
+  height: 0 !important;
+}
+
+//
+// アニメーション
+//
+.left-enter-active, .left-leave-active {
+  transition: opacity 0.2s, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.left-enter, .left-leave-to {
+  opacity: 0;
+  transform: translateX(-100vw) translateX(0px);
+}
+.right-enter-active, .right-leave-active {
+  transition: opacity 0.2s, transform 0.2s, cubic-bezier(0.4, 0, 0.2, 1)
+}
+.right-enter, .right-leave-to {
+  transform: translateX(100vw) translateX(0px);
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+.bottom-enter-active, .bottom-leave-active {
+  transition: opacity 0.2s, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.bottom-enter, .bottom-leave-to {
+  opacity: 0;
+  transform: translateY(100vh) translateY(0px);
+}
+
 @media (min-width: 960px) {
   .container {
     max-width: 960px;

@@ -40,7 +40,7 @@
     <Toaster />
 
     <!-- <TheDialog v-if="isShowDialog" /> -->
-    <!-- <TheOverlay v-if="isShowOverlay" /> -->
+    <TheOverlay v-if="isShowOverlay" />
 
     <v-main class="l-main">
       <v-container class="d-flex" fluid>
@@ -49,13 +49,10 @@
             <TheSideMenu />
             <!-- <p>getters: {{ $store.getters["SkillStore/getTest"] }}</p> -->
             <p>computed: {{ getTest }}</p>
-            <p>computed: {{ getHoge }}</p>
 
             <!-- <p>
               {{ $store.getters["SkillStore/getItems"][0] }}
               {{ $store.getters["SkillStore/getItems"][0].name }}
-              {{ $store.getters["SkillStore/getItems"][1] }}
-              {{ $store.getters["SkillStore/getItems"][1].price }}
             </p> -->
           </div>
         </div>
@@ -145,13 +142,20 @@ export default class default1 extends Vue {
     return skillStore.getTest
   }
 
-  get getHoge() {
-    return skillStore.getHoge
+  get IsApplicationLoaded() {
+    return appStore.isApplicationLoaded
   }
 
   get stackComponents() {
     return appStore.getStackComponents ? appStore.getStackComponents : []
-    // return appStore.getStackComponents
+  }
+
+  get isShowDialog() {
+    return !!appStore.getDialog.length
+  }
+
+  get isShowOverlay() {
+    return appStore.getIsShowOverlay
   }
 
   //

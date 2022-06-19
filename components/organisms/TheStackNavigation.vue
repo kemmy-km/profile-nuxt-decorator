@@ -2,7 +2,7 @@
   <div>
     <!-- オーバーレイ -->
     <transition name="fade">
-      <div v-if="isLoaded" :class="style.overLay" @click="removeStack" />
+      <div v-if="isLoaded" :class="style.overlay" @click="removeStack" />
     </transition>
     <!-- コンテンツ -->
     <transition name="right">
@@ -16,6 +16,7 @@
 
 <script>
 import { Component, Vue, Prop } from "nuxt-property-decorator"
+import { MOBILE_SCREEN_SIZE } from "~/constants/config"
 import { appStore } from "~/store"
 
 @Component
@@ -81,11 +82,15 @@ export default class TheStackNavigation extends Vue {
     }
   }
 
-  // get widthPercentage() {
-  //   if (true) {
-  //     return 100
-  //   }
-  // }
+  get widthPercentage() {
+    if (this.$vuetify.breakpoint.width <= MOBILE_SCREEN_SIZE) {
+      return "100%"
+    }
+    if (this.width) {
+      return this.width === "narrow" ? "50%" : "80%"
+    }
+    return this.isTopPage ? "80%" : "100%"
+  }
 
   //
   // Method
@@ -110,7 +115,7 @@ export default class TheStackNavigation extends Vue {
       @include stack;
     }
     //
-    background: blue !important;
+    background: #1e1e1e !important;
   }
 
   &__overlay {

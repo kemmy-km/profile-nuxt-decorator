@@ -46,3 +46,6 @@ export const SIDE_MENU = [
     icon: "mdi-chart-bubble",
   },
 ]
+
+/** スマホ幅 */
+export const MOBILE_SCREEN_SIZE = 600

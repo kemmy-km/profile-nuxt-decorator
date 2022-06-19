@@ -3,14 +3,14 @@
     <TheStackHeader />
     <v-container>
       <v-card outlined class="">
-        <v-card-title>ポートフォリオ詳細</v-card-title>
+        <v-card-title>スキル詳細</v-card-title>
         <!-- <v-row>  </v-row> -->
       </v-card>
     </v-container>
 
     <v-container>
       <div class="card-wrapper">
-        <!-- <div v-for="(skill, i) in awsSkills" :key="i" class="card">
+        <div v-for="(skill, i) in awsSkills" :key="i" class="card">
           <div class="card-text">
             {{ skill.title }}
           </div>
@@ -18,19 +18,8 @@
           <p>
             {{ skill.other }}
           </p>
-        </div> -->
-        <div v-for="(portfolio, i) in portfolios" :key="i" class="card">
-          <div class="card-text">
-            {{ portfolio.title }}
-          </div>
-          <v-spacer />
-          <p>
-            {{ portfolio.other }}
-          </p>
-          <p>
-            {{ portfolio.useSkill }}
-          </p>
         </div>
+        <!-- クリックしたスキルのskill.codeに応じてフォームに表示させる内容を動的に表示させたい -->
       </div>
     </v-container>
   </div>
@@ -39,11 +28,11 @@
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
 // import { AwsSkillRequest } from "~/types/api/skill"
-// import { AWS_SKILLS } from "~/constants/default/awsSkill"
-import { PORTFOLIO } from "~/constants/default/portfolio"
+import { AWS_SKILL } from "~/constants/default/awsSkill"
+import { SKILL } from "~/constants/default/skill"
 
 @Component
-export default class PortfolioForm extends Vue {
+export default class SkillForm extends Vue {
   //
   // Data
   //
@@ -57,8 +46,8 @@ export default class PortfolioForm extends Vue {
   //   return AWS_SKILLS
   // }
 
-  get portfolios() {
-    return PORTFOLIO
+  get awsSkills() {
+    return AWS_SKILL
   }
   //
   // methods
